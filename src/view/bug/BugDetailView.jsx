@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { NavBar, Icon, List } from 'antd-mobile'
+import { NavBar, Icon, List, Steps, WhiteSpace } from 'antd-mobile'
 import axios from 'axios'
 
 export default function BugDetailView(props) {
@@ -23,33 +23,20 @@ export default function BugDetailView(props) {
             onLeftClick={e => { console.log(props); props.history.push('/main') }}>缺陷详情</NavBar>
         <List renderHeader={() => 'Basic Style'} className="my-list">
             <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-        </List>
-        <List renderHeader={() => 'Basic Style'} className="my-list">
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
+            <List.Item extra={bug.content}>内容</List.Item>
             <List.Item extra={bug.title_name}>标题</List.Item>
             <List.Item extra={bug.title_name}>标题</List.Item>
         </List>
         <List renderHeader={() => 'Basic Style'} className="my-list">
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-        </List>
-        <List renderHeader={() => 'Basic Style'} className="my-list">
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-        </List>
-        <List renderHeader={() => 'Basic Style'} className="my-list">
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
+            <List.Item>
+                <WhiteSpace />
+                <Steps size="small" current={1}>
+                    <Steps.Step title="Finished" description="This is description" />
+                    <Steps.Step title="In Progress" description="This is description" />
+                    <Steps.Step title="Waiting" description="This is description" />
+                </Steps>
+                <WhiteSpace />
+            </List.Item>
         </List>
     </div >
 }
