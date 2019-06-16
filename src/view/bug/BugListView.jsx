@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 import { NavBar, ListView } from 'antd-mobile'
 import axios from 'axios'
+import { AppDataContext } from '../../AppData'
 
 export default function BugView(props) {
     const [dataSource, setDataSource] = useState(new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }))
+    const { appDispatch } = useContext(AppDataContext)
 
     // eslint-disable-next-line
     const loadData = useCallback(async () => {
-        const response = await axios.post('http://hefeixiaomu.com:3009/find_bug', {
-        })
+        const response = await axios.post('http://hefeixiaomu.com:3009/find_bug', {})
         if (response && response.data.code === 0 && response.data.data) {
             setDataSource(dataSource.cloneWithRows(response.data.data))
         }
@@ -33,9 +34,10 @@ export default function BugView(props) {
                     }}
                 />
             )}
-            renderRow={(rowData, sectionID, rowID, highlightRow) => {
+            renderRow={(rowData) => {
                 return <div style={{ height: 50, display: 'flex', paddingLeft: 15, alignItems: 'center' }} onClick={() => {
                     props.history.push(`/bugdetail/${rowData.id}`)
+                    appDispatch({ type: 'bug', data: rowData })
                 }}>{rowData.title_name || '空'}</div>
             }}></ListView>
     </div>

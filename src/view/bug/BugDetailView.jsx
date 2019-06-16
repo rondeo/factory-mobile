@@ -1,33 +1,18 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useContext } from 'react'
 import { NavBar, Icon, List, Steps, WhiteSpace } from 'antd-mobile'
-import axios from 'axios'
+import { AppDataContext } from '../../AppData'
 
 export default function BugDetailView(props) {
-    const [bug, setBug] = useState({})
-
-    // eslint-disable-next-line
-    const loadBug = useCallback(async () => {
-        const response = await axios.post('http://hefeixiaomu.com:3009/find_bug', { id: props.match.params.id })
-        if (response && response.data.code === 0 && response.data.data && response.data.data.length > 0) {
-            setBug(response.data.data[0])
-        }
-    })
-
-    useEffect(() => {
-        loadBug()
-        // eslint-disable-next-line
-    }, [])
+    const { appState } = useContext(AppDataContext)
 
     return <div style={{ width: '100%', height: '100%' }}>
         <NavBar mode="light" icon={<Icon type='left' />}
             onLeftClick={e => { console.log(props); props.history.push('/main') }}>缺陷详情</NavBar>
-        <List renderHeader={() => 'Basic Style'} className="my-list">
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.content}>内容</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
-            <List.Item extra={bug.title_name}>标题</List.Item>
+        <List renderHeader={() => '缺陷信息'} className="my-list">
+            <List.Item extra={appState.bug.title_name}>标题</List.Item>
+            <List.Item extra={appState.bug.content}>内容</List.Item>
         </List>
-        <List renderHeader={() => 'Basic Style'} className="my-list">
+        <List renderHeader={() => '缺陷进度'} className="my-list">
             <List.Item>
                 <WhiteSpace />
                 <Steps size="small" current={1}>
@@ -37,6 +22,9 @@ export default function BugDetailView(props) {
                 </Steps>
                 <WhiteSpace />
             </List.Item>
+        </List>
+        <List renderHeader={() => '缺陷处理'} className="my-list">
+            <List.Item arrow="horizontal">分配处理</List.Item>
         </List>
     </div >
 }
