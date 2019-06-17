@@ -3,13 +3,15 @@ import './App.css';
 import { HashRouter, Route } from 'react-router-dom'
 import LoginView from './view/LoginView'
 import MainView from './view/MainView'
-import BugDetailView from './view/bug/BugDetailView'
+import BugView from './view/bug/BugView'
+import DeviceView from './view/device/DeviceView'
 
 function App() {
   return <HashRouter >
     <Route path="/" exact component={LoginView} />
     <Route path="/main" exact component={MainView} />
-    <Route path="/bugdetail/:id" exact component={BugDetailView} />
+    <Route path="/bug" exact component={BugView} />
+    <Route path="/device" exact component={DeviceView} />
   </HashRouter>
 }
 

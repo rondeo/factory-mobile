@@ -1,11 +1,10 @@
 import React, { useReducer } from 'react'
 
-const initialState = { user: {}, bug: {} }
+const initialState = { user: {} }
 function reducer(state, action) {
     console.log('reducer', state, action)
     switch (action.type) {
         case 'login': return { ...state, user: action.data }
-        case 'bug': return { ...state, bug: action.data }
         default: return state;
     }
 }
