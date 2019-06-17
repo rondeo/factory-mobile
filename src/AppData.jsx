@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 
-const initialState = { user: {} }
+const initialState = { user: {id: -1} }
 function reducer(state, action) {
     console.log('reducer', state, action)
     switch (action.type) {
