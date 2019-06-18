@@ -12,9 +12,9 @@ function App() {
   console.log(appState.user.id)
   return <HashRouter >
     <Route path="/" exact component={LoginView} />
-    <Route path="/main" exact render={props => appState.user.id >= 0 ? <MainView /> : <Redirect to='/' />} />
-    <Route path="/bug" exact render={props => appState.user.id >= 0 ? <BugView /> : <Redirect to='/' />} />
-    <Route path="/device" exact render={props => appState.user.id >= 0 ? <DeviceView /> : <Redirect to='/' />} />
+    <Route path="/main" exact render={props => appState.user.id >= 0 ? <MainView {...props}/> : <Redirect to='/' />} />
+    <Route path="/bug" exact render={props => appState.user.id >= 0 ? <BugView {...props}/> : <Redirect to='/' />} />
+    <Route path="/device" exact render={props => appState.user.id >= 0 ? <DeviceView {...props}/> : <Redirect to='/' />} />
   </HashRouter>
 }
 
