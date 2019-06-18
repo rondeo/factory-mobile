@@ -86,9 +86,6 @@ export default props => {
             </List>
             <WhiteSpace />
             <WingBlank>
-
-
-
                 <Button type="primary" onClick={() => {
                     axios.post('http://hefeixiaomu.com:3009/insert_task', {
                         title: newTask.title,

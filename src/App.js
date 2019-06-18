@@ -9,7 +9,7 @@ import { AppDataContext } from './AppData'
 
 function App() {
   const { appState } = useContext(AppDataContext)
-  console.log(appState.user.id)
+  
   return <HashRouter >
     <Route path="/" exact component={LoginView} />
     <Route path="/main" exact render={props => appState.user.id >= 0 ? <MainView {...props}/> : <Redirect to='/' />} />
